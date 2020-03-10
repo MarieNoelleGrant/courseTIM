@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Détails du participant</title>
+</head>
+<body>
+    <h1>Détails du participant {{ participant.prenom_participant }} {{ participant.nom_participant }}</h1>
+
+    <p>Prénom : {{ participant.prenom_participant }}</p>
+    <p>Nom : {{ participant.nom_participant }}</p>
+    <ul>Catégories dans lesquels le participant se trouve :
+    {{ categorie }}
+{#        {% for categorie in categorie %}#}
+{#            {% if categorie.participants == participant.id %}#}
+{#                <li>{{ categorie.nom_categorie }}</li>#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+
+    </ul>
+</body>
+</html>

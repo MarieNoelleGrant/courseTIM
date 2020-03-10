@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Liste des participants</title>
+{#    {% load static %}#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">#}
+</head>
+<body>
+    <h1>Liste des participants à la course TIM</h1>
+    <h2>Sélectionnez un des participants pour avoir plus d'informations</h2>
+    {% if participants_course %}
+        <ul>
+        {% for participant in participants_course %}
+            <li><a href="{% url 'particpants:detail_participant' participant.id %}">{{ participant.prenom_participant }} {{ participant.nom_participant }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Il n'y a pas encore de participants à la course!</p>
+    {% endif %}
+
+    <p><a href="{% url 'particpants:index' %}">Retour à l'accueil</a></p>
+</body>
+</html>
