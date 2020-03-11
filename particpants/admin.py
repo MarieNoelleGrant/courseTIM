@@ -10,18 +10,8 @@ from .models import Participant, Categorie
 
 # VERSION AMÉLIORÉE ET 'CUSTOM'
 # --------------------------------------------
-class CategorieInline(admin.TabularInline):
-    model = Categorie.participants.through
-    list_display = ('nom_categorie', 'description_categorie')
-    extra = 1
-
-
-class IntersectionInline(admin.ModelAdmin):
-    inlines = [CategorieInline]
-
-
-class ParticipantAdmin(admin.ModelAdmin):
-    inlines = [CategorieInline]
+class ParticipantInline(admin.TabularInline):
+    model = Participant.categories.through
 
     fieldsets = [
         ('Nom complet', {'fields': ['prenom_participant', 'nom_participant']}),
@@ -38,5 +28,22 @@ class ParticipantAdmin(admin.ModelAdmin):
     search_fields = ['prenom_participant', 'nom_participant', 'actif']
 
 
-admin.site.register(Participant, ParticipantAdmin)
-admin.site.register(Categorie)
+class IntersectionInline(admin.ModelAdmin):
+    inlines = [ParticipantInline]
+
+
+class CategorieAdmin(admin.ModelAdmin):
+    inlines = [ParticipantInline]
+
+    list_display = ('nom_categorie', 'description_categorie')
+    extra = 1
+
+    # Ajoute une fenêtre de filtre par date de publication pour la liste
+    list_filter = ['description_categorie']
+
+    # Ajoute un champ de recherche par nom de question (question_text)
+    search_fields = ['nom_categorie']
+
+
+admin.site.register(Categorie, CategorieAdmin)
+admin.site.register(Participant)

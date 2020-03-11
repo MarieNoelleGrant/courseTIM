@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulaire d'inscription</title>
+{#    {% load static %}#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">#}
+</head>
+<body>
+    <h1>Inscription à la course TIM</h1>
+    <form action="#" method="post">
+        {{ form }}
+        <button>M'inscrire</button>
+    </form>
+    <p><a href="{% url 'particpants:index' %}">Retour à l'accueil</a></p>
+</body>
+</html>

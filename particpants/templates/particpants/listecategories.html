@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Liste des catégories</title>
+{#    {% load static %}#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">#}
+</head>
+<body>
+    <h1>Liste des catégories de la course TIM</h1>
+    {% if toutes_categories %}
+        {% for categorie in toutes_categories %}
+            <div>
+                <h2>{{ categorie.nom_categorie }}</h2>
+                <p>Distance : {{ categorie.description_categorie }}</p>
+                {% if participants %}
+                    <p>Participants : </p>
+                    <ul>
+                        {% for participant in participants %}
+                            {% for categorie_participant in participant.categories.all %}
+                                {% if categorie.id == categorie_participant.id %}
+                                    <li>
+                                        <a href="{% url 'particpants:detail_participant' participant.id %}">{{ participant.prenom_participant }} {{ participant.nom_participant }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <li>Il n'y a pas encore de catégorie à la course TIM!</li>
+    {% endif %}
+
+    <p><a href="{% url 'particpants:inscription' %}">Je veux m'inscrire!</a></p>
+    <p><a href="{% url 'particpants:index' %}">Retour à l'accueil</a></p>
+</body>
+</html>

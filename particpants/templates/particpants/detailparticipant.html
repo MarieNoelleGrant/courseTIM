@@ -11,14 +11,12 @@
 
     <p>Prénom : {{ participant.prenom_participant }}</p>
     <p>Nom : {{ participant.nom_participant }}</p>
-    <ul>Catégories dans lesquels le participant se trouve :
-    {{ categorie }}
-{#        {% for categorie in categorie %}#}
-{#            {% if categorie.participants == participant.id %}#}
-{#                <li>{{ categorie.nom_categorie }}</li>#}
-{#            {% endif %}#}
-{#        {% endfor %}#}
-
+    <p>Catégories dans lesquelles le participant se trouve :</p>
+    <ul>
+        {% for categorie in participant.categories.all %}
+            <li>{{ categorie.nom_categorie }}</li>
+        {% endfor %}
     </ul>
+<p><a href="{% url 'particpants:liste_participants' %}">Retour à la liste des participants</a></p>
 </body>
 </html>
