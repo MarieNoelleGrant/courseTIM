@@ -37,18 +37,21 @@ def liste_categories(request):
     return render(request, 'particpants/listecategories.html', context)
 
 
-def inscription(request):
+def participant_create(request):
+    validation_ok = False
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = InscriptionParticipantForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            return HttpResponseRedirect('/thanks/')
+            validation_ok = True
+            form.save()
     else:
         form = InscriptionParticipantForm
 
     context = {
-        'form': form
+        'form': form,
+        'formValidate': validation_ok
     }
     return render(request, 'particpants/inscription.html', context)
